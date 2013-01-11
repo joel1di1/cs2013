@@ -1,5 +1,8 @@
 JoeCodeStory2013::Application.routes.draw do
 
+  resources :enonces
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -31,6 +34,8 @@ JoeCodeStory2013::Application.routes.draw do
   #     resources :comments, :sales
   #     resource :seller
   #   end
+
+  resource :enonces, :only => [:create] 
 
   # Sample resource route with more complex sub-resources
   #   resources :products do

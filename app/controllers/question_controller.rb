@@ -1,6 +1,5 @@
 class QuestionController < ApplicationController
 
-
 	def show
 		question = params[:q]
 		if question
