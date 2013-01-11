@@ -1,8 +1,5 @@
 JoeCodeStory2013::Application.routes.draw do
 
-  resources :enonces
-
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -35,7 +32,9 @@ JoeCodeStory2013::Application.routes.draw do
   #     resource :seller
   #   end
 
-  resource :enonces, :only => [:create] 
+  resource :enonces, :only => [:show], :defaults => { :format => 'json' }
+
+  post 'enonce/:id' => 'enonces#create'
 
   # Sample resource route with more complex sub-resources
   #   resources :products do
@@ -54,7 +53,7 @@ JoeCodeStory2013::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'question#show'
+  root :to => 'question#show', :defaults => { :format => 'json' }
 
   # See how all your routes lay out with "rake routes"
 

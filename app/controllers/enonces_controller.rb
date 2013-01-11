@@ -5,7 +5,6 @@ class EnoncesController < ApplicationController
     @enonces = Enonce.all
 
     respond_to do |format|
-      format.html # index.html.erb
       format.json { render json: @enonces }
     end
   end
@@ -16,7 +15,6 @@ class EnoncesController < ApplicationController
     @enonce = Enonce.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
       format.json { render json: @enonce }
     end
   end
@@ -40,14 +38,14 @@ class EnoncesController < ApplicationController
   # POST /enonces
   # POST /enonces.json
   def create
-    @enonce = Enonce.new(params[:enonce])
+    @enonce = Enonce.new
+    @enonce.text = params.to_json
+    @enonce.id = params[:id]
 
     respond_to do |format|
       if @enonce.save
-        format.html { redirect_to @enonce, notice: 'Enonce was successfully created.' }
-        format.json { render json: @enonce, status: :created, location: @enonce }
+        format.json { render json: @enonce, status: :created}
       else
-        format.html { render action: "new" }
         format.json { render json: @enonce.errors, status: :unprocessable_entity }
       end
     end
@@ -60,10 +58,8 @@ class EnoncesController < ApplicationController
 
     respond_to do |format|
       if @enonce.update_attributes(params[:enonce])
-        format.html { redirect_to @enonce, notice: 'Enonce was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
         format.json { render json: @enonce.errors, status: :unprocessable_entity }
       end
     end
@@ -76,7 +72,6 @@ class EnoncesController < ApplicationController
     @enonce.destroy
 
     respond_to do |format|
-      format.html { redirect_to enonces_url }
       format.json { head :no_content }
     end
   end
