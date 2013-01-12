@@ -2,9 +2,10 @@ require 'spec_helper'
 
 describe "Enonces" do
   describe "GET /enonces" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get enonces_path
+
+    it "show enonce" do
+    	enonce = Enonce.create
+      get enonce_path enonce
       response.status.should be(200)
     end
   end
