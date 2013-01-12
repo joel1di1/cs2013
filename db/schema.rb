@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130111154055) do
+ActiveRecord::Schema.define(:version => 20130112203227) do
 
   create_table "answers", :force => true do |t|
     t.datetime "created_at",    :null => false
@@ -24,6 +24,11 @@ ActiveRecord::Schema.define(:version => 20130111154055) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.text     "text"
+  end
+
+  create_table "scalaskels", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
