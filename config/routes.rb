@@ -32,6 +32,8 @@ JoeCodeStory2013::Application.routes.draw do
   #     resource :seller
   #   end
 
+  get 'scalaskel/change/:amount' => 'scalaskel#change'
+
   resources :enonces, :only => [:show], :defaults => { :format => 'json' }
 
   post 'enonce/:id' => 'enonces#create'

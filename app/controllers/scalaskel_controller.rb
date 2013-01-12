@@ -1,0 +1,2 @@
+class ScalaskelController < ApplicationController
+end
