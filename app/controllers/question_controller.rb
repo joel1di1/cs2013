@@ -3,7 +3,7 @@ class QuestionController < ApplicationController
 	def show
 		question = params[:q]
 		if question
-			if request.query_string.match /(\d+)(([-+\/\*])(\d+))+/ 
+			if request.query_string.match /^(\(*\d+\)*)(([-+\/\*])(\(*\d+\)*))+$/ 
 				render :text => eval(request.query_string)
 			else
 				answer = Answer.find_by_question question
