@@ -1,11 +1,14 @@
+require 'dentaku'
+
 class QuestionController < ApplicationController
 
 	def show
 		question = params[:q]
 		if question
 			p request.query_string
-			if request.query_string.match /^q=(\(*\d+\)*)(([-+\/\*])(\(*\d+\)*))+$/ 
-				render :text => eval(request.query_string)
+			if m = request.query_string.match(/^q=([\.\d\(\)\-+\/*]+)$/)
+				calculator = Dentaku::Calculator.new
+				render :text => calculator.evaluate(m[1])
 			else
 				answer = Answer.find_by_question question
 				if answer.nil?

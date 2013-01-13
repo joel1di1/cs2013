@@ -1,3 +1,9 @@
+GIT
+  remote: http://github.com/rubysolo/dentaku
+  revision: 02068189b3d8c9d6181b9a71093a98b8e1173562
+  specs:
+    dentaku (0.2.10)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -119,6 +125,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  dentaku!
   hashdiff
   jquery-rails
   pg
