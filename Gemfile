@@ -26,6 +26,7 @@ gem 'jquery-rails'
 group :test, :development do
 	gem 'sqlite3'
 	gem "rspec-rails", "~> 2.0"
+	gem 'hashdiff'
 end
 
 
