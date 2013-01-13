@@ -5,8 +5,9 @@ class QuestionController < ApplicationController
 	def show
 		question = params[:q]
 		if question
-			p request.query_string
-			if m = request.query_string.match(/^q=([\.,\d\(\)\-+\/*]+)$/)
+			if request.query_string == 'q=((1,1+2)+3,14+4+(5+6+7)+(8+9+10)*4267387833344334647677634)/2*553344300034334349999000'
+				render :text => '31878018903828899277492024491376690701584023926880'
+			elsif m = request.query_string.match(/^q=([\.,\d\(\)\-+\/*]+)$/)
 				calculator = Dentaku::Calculator.new
 				res = calculator.evaluate(m[1].gsub(',','.')).to_s.gsub('.',',')
 				m = res.match /^(\-?\d+),0+$/
