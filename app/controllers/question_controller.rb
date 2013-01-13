@@ -8,7 +8,7 @@ class QuestionController < ApplicationController
 			p request.query_string
 			if m = request.query_string.match(/^q=([\.,\d\(\)\-+\/*]+)$/)
 				calculator = Dentaku::Calculator.new
-				res = calculator.evaluate(m[1].sub(',','.')).to_s.sub('.',',')
+				res = calculator.evaluate(m[1].gsub(',','.')).to_s.gsub('.',',')
 				m = res.match /^(\-?\d+),0+$/
 				res = m[1] if m
 				render :text => res
