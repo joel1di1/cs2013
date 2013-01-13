@@ -8,6 +8,7 @@ gem 'rails', '3.2.11'
 group :production do
   gem 'pg'
   gem 'dentaku', :git => 'http://github.com/rubysolo/dentaku'
+  gem 'nokogiri'
 end
 
 # Gems used only for assets and not required

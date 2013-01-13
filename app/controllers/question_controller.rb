@@ -1,18 +1,15 @@
 require 'dentaku'
+require 'net/http'
 
 class QuestionController < ApplicationController
+
+	CALC_URI = URI('http://web2.0calc.com/api/')
 
 	def show
 		question = params[:q]
 		if question
-			if request.query_string == 'q=((1,1+2)+3,14+4+(5+6+7)+(8+9+10)*4267387833344334647677634)/2*553344300034334349999000'
-				render :text => '31878018903828899277492024491376690701584023926880'
-			elsif m = request.query_string.match(/^q=([\.,\d\(\)\-+\/*]+)$/)
-				calculator = Dentaku::Calculator.new
-				res = calculator.evaluate(m[1].gsub(',','.')).to_s.gsub('.',',')
-				m = res.match /^(\-?\d+),0+$/
-				res = m[1] if m
-				render :text => res
+			if m = request.query_string.match(/^q=([\.,\d\(\)\-+\/*]+)$/)
+				render :text => calcul(m[1])
 			else
 				answer = Answer.find_by_question question
 				if answer.nil?
@@ -24,5 +21,17 @@ class QuestionController < ApplicationController
 		else
 			render :text => 'Hello'	
 		end
+	end
+
+	def calcul exp
+		exp = exp.gsub(',','.')
+		res = calcul_on_0calc exp
+		res.gsub('.',',')
+	end
+
+	def calcul_on_0calc exp
+		res = Net::HTTP.post_form(CALC_URI, 'input' => exp)
+		json = JSON.parse res.body
+		json['results'].first['values'].second['string']
 	end
 end
