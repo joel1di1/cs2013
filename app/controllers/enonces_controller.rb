@@ -38,15 +38,19 @@ class EnoncesController < ApplicationController
   # POST /enonces
   # POST /enonces.json
   def create
-    @enonce = Enonce.new
-    @enonce.text = params.to_json
-    @enonce.id = params[:id]
+    if Enonce.find(params[:id])
+      render json: @enonce, status: 202
+    else
+      @enonce = Enonce.new
+      @enonce.text = params.to_json
+      @enonce.id = params[:id]
 
-    respond_to do |format|
-      if @enonce.save
-        format.json { render json: @enonce, status: :created}
-      else
-        format.json { render json: @enonce.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @enonce.save
+          format.json { render json: @enonce, status: :created}
+        else
+          format.json { render json: @enonce.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
