@@ -1,0 +1,1 @@
+jajascript_controller_spec.rb

@@ -29,6 +29,7 @@ group :test, :development do
 	gem 'sqlite3'
 	gem "rspec-rails", "~> 2.0"
 	gem 'hashdiff'
+  gem 'taps'
 end
 
 
