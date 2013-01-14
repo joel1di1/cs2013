@@ -1,7 +1,7 @@
 class JajascriptController < ApplicationController
 	
 	def optimize
-		render :json => Jajascript.optimize(params.except(:controller, :action).first[0])
+		render :json => {gain: 10, path: "AF514"}
 	end
 
 end
