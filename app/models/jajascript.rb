@@ -2,7 +2,9 @@ class Jajascript
 
 	def self.optimize data
 		json = JSON.parse data
-		{:gain=>json['PRIX'], :path=>[json['VOL']]}
+		res = {:gain=>json['PRIX'], :path=>[json['VOL']]}
+		p res
+		res
 	end
 
 end
