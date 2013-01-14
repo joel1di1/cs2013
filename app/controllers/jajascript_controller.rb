@@ -1,7 +1,7 @@
 class JajascriptController < ApplicationController
 	
 	def optimize
-		p params
+		render :json => Jajascript.optimize(request.params)
 	end
 
 end
