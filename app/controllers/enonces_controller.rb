@@ -38,8 +38,8 @@ class EnoncesController < ApplicationController
   # POST /enonces
   # POST /enonces.json
   def create
-    if Enonce.find(params[:id])
-      render json: @enonce, status: 202
+    if @enonce = Enonce.find(params[:id])
+      render json: @enonce, status: 201
     else
       @enonce = Enonce.new
       @enonce.text = params.to_json
