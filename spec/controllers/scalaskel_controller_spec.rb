@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe ScalaskelController do
+	before :each do
+		Rails.cache.clear
+	end
 	describe 'change' do
 		it 'should return Scalaskel change' do
 			response = {}
