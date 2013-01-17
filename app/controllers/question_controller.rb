@@ -8,16 +8,27 @@ class QuestionController < ApplicationController
 	def show
 		question = params[:q]
 		if question
-			if m = request.query_string.match(/^q=([\.,\d\(\)\-+\/*]+)$/)
-				render :text => calcul(m[1])
-			else
-				answer = Answer.find_by_question question
-				if answer.nil?
-					UserMailer.new_question(question).deliver
-					answer = Answer.create(:question => question, :answer_string => "je ne sais pas")
+
+			query_string = request.query_string
+			res = Rails.cache.read query_string
+			if res.nil?
+			# Rails.cache.fetch request.query_string do
+				p 'no cache !!!'
+				if m = query_string.match(/^q=([\.,\d\(\)\-+\/*]+)$/)
+					res = calcul(m[1])
+				else
+					answer = Answer.find_by_question question
+					if answer.nil?
+						UserMailer.new_question(question).deliver
+						answer = Answer.create(:question => question, :answer_string => nil)
+					end
+					res = answer.answer_string
 				end
-				render :text => answer.answer_string
+				Rails.cache.write(query_string, res) if res
 			end
+			# end
+			res ||= 'je ne sais pas'
+			render :text => res
 		else
 			render :text => 'Hello'	
 		end
