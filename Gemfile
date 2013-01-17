@@ -9,6 +9,8 @@ group :production do
   gem 'pg'
   gem 'dentaku', :git => 'http://github.com/rubysolo/dentaku'
   gem 'nokogiri'
+  gem 'memcachier'
+  gem 'dalli'
 end
 
 # Gems used only for assets and not required
