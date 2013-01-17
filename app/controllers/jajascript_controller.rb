@@ -1,7 +1,10 @@
 class JajascriptController < ApplicationController
 	
 	def optimize
-		render :json => Jajascript.optimize(params.except(:controller, :action).first[0])
+		res = Rails.cache.fetch params do
+			Jajascript.optimize(params.except(:controller, :action).first[0])
+		end
+		render :json => res
 	end
 
 end

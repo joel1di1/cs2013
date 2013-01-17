@@ -1,7 +1,10 @@
 class ScalaskelController < ApplicationController
 	
 	def change
-		render :json => Scalaskel.change(params[:amount].to_i)
+		res = Rails.cache.fetch params[:amount] do
+			Scalaskel.change(params[:amount].to_i)
+		end
+		render :json => res
 	end
 
 end

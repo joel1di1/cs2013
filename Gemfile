@@ -11,6 +11,7 @@ group :production do
   gem 'nokogiri'
   gem 'memcachier'
   gem 'dalli'
+  gem 'thin'
 end
 
 # Gems used only for assets and not required
