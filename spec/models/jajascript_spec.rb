@@ -15,6 +15,14 @@ describe Jajascript do
     	it { Jajascript.optimize(@data).should eq( {gain: 18, path: ["MONAD42", "LEGACY01"]} ) }
 		end
 
+		describe 'test with strange array' do
+			before :each do 
+				@data = "\n  {\"VOL\": \"AF1\", \"DEPART\":0, \"DUREE\":1, \"PRIX\": 10},\n  {\"VOL\": \"AF2\", \"DEPART\":1, \"DUREE\":1, \"PRIX\": 10}\n"
+			end
+			it { Jajascript.optimize(@data).should eq( {gain: 20, path: ["AF1", "AF2"]} ) }
+		end
+
+
 		describe 'first test' do 
 			before :each do 
 				@data = {"VOL" => "AF514", "DEPART" => 0, "DUREE" => 5, "PRIX" =>  10}.to_json

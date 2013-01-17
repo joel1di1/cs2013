@@ -1,7 +1,10 @@
 class Jajascript
 
 	def self.optimize data
-		flights = JSON.parse data
+
+		flights = JSON.parse data rescue JSON::ParserError
+		flights ||= JSON.parse('['+data+']') 
+
 		flights = [flights] if flights.kind_of? Hash
 
 		nodes = process_flights flights
