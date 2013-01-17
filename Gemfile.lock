@@ -65,6 +65,7 @@ GEM
     memcachier (0.0.2)
     mime-types (1.19)
     multi_json (1.5.0)
+    newrelic_rpm (3.5.5.38)
     nokogiri (1.5.6)
     pg (0.14.1)
     polyglot (0.3.3)
@@ -149,6 +150,7 @@ DEPENDENCIES
   hashdiff
   jquery-rails
   memcachier
+  newrelic_rpm
   nokogiri
   pg
   rails (= 3.2.11)

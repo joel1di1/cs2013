@@ -12,6 +12,7 @@ group :production do
   gem 'memcachier'
   gem 'dalli'
   gem 'thin'
+  gem 'newrelic_rpm'
 end
 
 # Gems used only for assets and not required
