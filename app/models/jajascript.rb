@@ -2,6 +2,8 @@ class Jajascript
 
 	def self.optimize data
 
+		return {gain: 0, path: []} if data.blank?
+
 		flights = JSON.parse data rescue JSON::ParserError
 		flights ||= JSON.parse('['+data+']') 
 
