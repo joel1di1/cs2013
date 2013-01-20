@@ -3,15 +3,28 @@
 class Node
 	def initialize params
 		@my_id = params[:id]
-		@flights = []
+		@flights_from = []
+		@flights_to = []
+		@best_path = Path.new
 	end
 
 	def id
 		@my_id
 	end
 
-	def flights
-		@flights
+	def best_path
+		@best_path
+	end
+	def best_path=(best_path)
+		@best_path = best_path
+	end
+
+	def flights_from
+		@flights_from
+	end
+
+	def flights_to
+		@flights_to
 	end
 
 	def add_zero_flight_to node
@@ -21,6 +34,6 @@ class Node
 	end
 
 	def to_s
-		"<node(#{@my_id}) flights: #{@flights}"
+		"<node(#{@my_id}) flights_from: #{@flights_from}, flights_to: #{@flights_to}"
 	end
 end

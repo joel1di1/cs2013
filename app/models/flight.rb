@@ -31,11 +31,12 @@ class Flight
 
 	def start_node= start_node
 		@start_node = start_node
-		start_node.flights << self
+		@start_node.flights_from << self
 	end
 
 	def end_node= end_node
 		@end_node = end_node
+		@end_node.flights_to << self
 	end
 
 	def start_node
