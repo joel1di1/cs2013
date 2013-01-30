@@ -31,6 +31,7 @@ describe Jajascript do
 					@data << {'VOL' => "node-#{i}", 'DEPART' => prng.rand(0..max_node), 'DUREE' => prng.rand(1..20), 'PRIX' => prng.rand(1..50)}
 				end
 				@data = @data.to_json
+				p @data
 			end
 			it { Jajascript.optimize(@data).should eq( {gain: 20, path: ["AF1", "AF2"]} ) }
 		end
