@@ -41,8 +41,10 @@ class QuestionController < ApplicationController
 	end
 
 	def calcul_on_0calc exp
-		res = Net::HTTP.post_form(CALC_URI, 'input' => exp)
+		res = Net::HTTP.post_form(CALC_URI, 'in' => exp)
+		p res
+		p res.body
 		json = JSON.parse res.body
-		json['results'].first['values'].second['string']
+		json['results'].first['result']
 	end
 end
