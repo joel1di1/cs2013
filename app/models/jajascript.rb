@@ -25,42 +25,10 @@ class Jajascript
 		end
 
 		nodes.last.best_path.to_json
-
-		# flight_plans = find_all_plans nodes
-		# best_plan = flight_plans.pop
-		# best_plan_price = compute_price best_plan
-		# while plan = flight_plans.pop
-		# 	plan_price = compute_price plan
-		# 	if plan_price > best_plan_price
-		# 		best_plan_price = plan_price
-		# 		best_plan = plan
-		# 	end
-		# end
-		# best_plan = best_plan.select{|flight| !flight.virtual}
-		# {:gain => best_plan_price, :path => best_plan.map(&:vol)}
 	end
 
 	def self.compute_price plan
 		plan.map(&:prix).inject(0, &:+)
-	end
-
-	def self.find_all_plans nodes
-		plans_to_proceed = nodes[0].flights_from.map{|flight| [flight]}
-
-		all_plans = []
-		while plan = plans_to_proceed.pop
-			end_node = plan.last.end_node
-			if !end_node.flights_from.empty?
-				end_node.flights_from.each do |flight|
-					new_plan = Array.new(plan)
-					new_plan << flight
-					plans_to_proceed << new_plan
-				end
-			else
-				all_plans << plan
-			end
-		end
-		all_plans
 	end
 
 	def self.process_flights flights
