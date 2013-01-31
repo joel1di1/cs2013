@@ -26,11 +26,12 @@ describe Jajascript do
 			before :each do 
 				prng = Random.new(1234)
 				@data = []
-				max_node = 100
+				max_node = 50000
 				(1..max_node).each do |i|
 					@data << {'VOL' => "node-#{i}", 'DEPART' => prng.rand(0..max_node), 'DUREE' => prng.rand(1..20), 'PRIX' => prng.rand(1..50)}
 				end
 				@data = @data.to_json
+				File.open('/tmp/data.txt'. w) {|f| f.write @data}
 			end
 			it { Jajascript.optimize(@data).should eq( {gain: 20, path: ["AF1", "AF2"]} ) }
 		end
