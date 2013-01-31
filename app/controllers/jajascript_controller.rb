@@ -1,15 +1,13 @@
 require 'net/http'
+require "base64"
 
 class JajascriptController < ApplicationController
 	
-	JJS_URI = URI('http://quiet-depths-3065.herokuapp.com/jajascript/optimize')
+	JJS_URI = URI('http://ec2-54-242-230-71.compute-1.amazonaws.com:8080/jajascript/optimize')
 
 	def optimize
-		# p "optimize with -#{params}-"
-
-		p params
-		res = Net::HTTP.post_form(JJS_URI, params.except(:action, :controller))
-
+		input = params.except(:action, :controller).first[0]
+		res = Net::HTTP.post_form(JJS_URI, 'input' => input)
 		render :text =>	res.body
 	end
 
