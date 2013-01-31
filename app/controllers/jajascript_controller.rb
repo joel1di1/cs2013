@@ -8,7 +8,7 @@ class JajascriptController < ApplicationController
 	def optimize
 		p "start optimize"
 		input = params.except(:action, :controller).first[0]
-		p "start post (#{input.size})"
+		p "start post (#{JSON.parse('['+input+']').size})" rescue JSON::ParserError 
 		res = Net::HTTP.post_form(JJS_URI, 'input' => input)
 		p "post respond"
 		render :text =>	res.body
