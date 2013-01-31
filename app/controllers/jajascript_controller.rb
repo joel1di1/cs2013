@@ -10,7 +10,7 @@ class JajascriptController < ApplicationController
 		p params
 		res = Net::HTTP.post_form(JJS_URI, params.except(:action, :controller))
 
-		render :json =>	Jajascript.optimize(params.except(:controller, :action).first[0])
+		render :text =>	res.body
 	end
 
 end
